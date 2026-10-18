@@ -1,0 +1,40 @@
+{
+  "@@locale": "en",
+  "appTitle": "ScanDesk",
+  "tagline": "Scan. Report. Fix.",
+  "retry": "Retry",
+  "somethingWentWrong": "Something went wrong",
+  "nothingHereYet": "Nothing here yet",
+  "login": "Log in",
+  "logout": "Log out",
+  "email": "Email",
+  "password": "Password",
+  "noAccountRegister": "No account? Register",
+  "home": "Home",
+  "welcomeUser": "Welcome, {name}",
+  "@welcomeUser": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "supabaseNotConfigured": "Supabase is not configured yet. Add your URL and anon key to the .env file.",
+  "roleEmployee": "Employee",
+  "roleTechnician": "Technician",
+  "roleManager": "IT Manager",
+  "sprint0Title": "Sprint 0 · Foundation",
+  "supabaseStatus": "Supabase connection",
+  "supabaseConnected": "Connected",
+  "supabaseUnreachable": "Can't reach Supabase",
+  "checkAgain": "Check again",
+  "sharedWidgets": "Shared widgets",
+  "statusColors": "Ticket status colors",
+  "changeTheme": "Change theme",
+  "changeLanguage": "Change language",
+  "tapMe": "Tap me",
+  "statusNew": "New",
+  "statusAssigned": "Assigned",
+  "statusInProgress": "In progress",
+  "statusResolved": "Resolved"
+}
