@@ -27,17 +27,17 @@ class ProfileModel {
   final String? siteId;
 
   Map<String, dynamic> toJson() => {
-    'id': id,
-    'full_name': fullName,
-    'role': role,
-    'site_id': siteId,
-  };
+        'id': id,
+        'full_name': fullName,
+        'role': role,
+        'site_id': siteId,
+      };
 
   AppUser toEntity({required String email}) => AppUser(
-    id: id,
-    email: email,
-    fullName: fullName,
-    role: UserRole.fromValue(role),
-    siteId: siteId,
-  );
+        id: id,
+        email: email,
+        fullName: fullName,
+        role: UserRole.fromValue(role),
+        siteId: siteId,
+      );
 }

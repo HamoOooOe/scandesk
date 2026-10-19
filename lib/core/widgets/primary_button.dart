@@ -33,6 +33,9 @@ class PrimaryButton extends StatelessWidget {
             ],
           );
 
-    return FilledButton(onPressed: isLoading ? null : onPressed, child: child);
+    return FilledButton(
+      onPressed: isLoading ? null : onPressed,
+      child: child,
+    );
   }
 }
