@@ -24,6 +24,18 @@ class AuthRepositoryImpl implements AuthRepository {
   );
 
   @override
+  Stream<void> get onPasswordRecovery => _client.auth.onAuthStateChange.where(
+    (state) => state.event == AuthChangeEvent.passwordRecovery,
+  );
+
+  @override
+  Future<void> updatePassword(String newPassword) {
+    return _guard(
+      () => _client.auth.updateUser(UserAttributes(password: newPassword)),
+    );
+  }
+
+  @override
   Future<AppUser?> getCurrentUser() async {
     return _guard(() async {
       final user = _client.auth.currentUser;
@@ -63,7 +75,12 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<void> sendPasswordReset(String email) {
-    return _guard(() => _client.auth.resetPasswordForEmail(email.trim()));
+    return _guard(
+      () => _client.auth.resetPasswordForEmail(
+        email.trim(),
+        redirectTo: AppConstants.passwordResetRedirect,
+      ),
+    );
   }
 
   @override
