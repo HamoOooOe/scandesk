@@ -54,7 +54,8 @@ class _LoginFormState extends State<LoginForm> {
             ),
             validator: (value) {
               final email = value?.trim() ?? '';
-              final valid = RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$').hasMatch(email);
+              final valid = RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$')
+                  .hasMatch(email);
               return valid ? null : 'Enter a valid email';
             },
           ),
@@ -78,9 +79,8 @@ class _LoginFormState extends State<LoginForm> {
                 ),
               ),
             ),
-            validator: (value) => (value ?? '').length >= 6
-                ? null
-                : 'At least 6 characters',
+            validator: (value) =>
+                (value ?? '').length >= 6 ? null : 'At least 6 characters',
           ),
           const SizedBox(height: 24),
           PrimaryButton(

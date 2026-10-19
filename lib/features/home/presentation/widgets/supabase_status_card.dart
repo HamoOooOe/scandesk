@@ -58,20 +58,20 @@ class _SupabaseStatusCardState extends State<SupabaseStatusCard> {
           final (connection, detail) = snapshot.data!;
           final (icon, color, label) = switch (connection) {
             _Connection.connected => (
-                Icons.check_circle,
-                Colors.green,
-                l10n.supabaseConnected,
-              ),
+              Icons.check_circle,
+              Colors.green,
+              l10n.supabaseConnected,
+            ),
             _Connection.notConfigured => (
-                Icons.settings_outlined,
-                scheme.outline,
-                l10n.supabaseNotConfigured,
-              ),
+              Icons.settings_outlined,
+              scheme.outline,
+              l10n.supabaseNotConfigured,
+            ),
             _Connection.unreachable => (
-                Icons.cloud_off,
-                scheme.error,
-                l10n.supabaseUnreachable,
-              ),
+              Icons.cloud_off,
+              scheme.error,
+              l10n.supabaseUnreachable,
+            ),
           };
 
           return ListTile(

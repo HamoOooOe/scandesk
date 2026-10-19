@@ -7,8 +7,9 @@ import 'package:flutter/material.dart';
 class AppSettings {
   const AppSettings._();
 
-  static final ValueNotifier<ThemeMode> themeMode =
-      ValueNotifier(ThemeMode.system);
+  static final ValueNotifier<ThemeMode> themeMode = ValueNotifier(
+    ThemeMode.system,
+  );
 
   /// null = follow the phone's language.
   static final ValueNotifier<Locale?> locale = ValueNotifier(null);
