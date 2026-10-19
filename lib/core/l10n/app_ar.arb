@@ -8,6 +8,8 @@
   "login": "تسجيل الدخول",
   "logout": "تسجيل الخروج",
   "email": "البريد الإلكتروني",
+  "invalidEmail": "أدخل بريدًا إلكترونيًا صحيحًا",
+  "passwordTooShort": "6 أحرف على الأقل",
   "password": "كلمة المرور",
   "noAccountRegister": "ليس لديك حساب؟ سجّل الآن",
   "home": "الرئيسية",
@@ -29,5 +31,12 @@
   "statusNew": "جديد",
   "statusAssigned": "تم التعيين",
   "statusInProgress": "قيد التنفيذ",
-  "statusResolved": "تم الحل"
+  "statusResolved": "تم الحل",
+  "fullName": "الاسم الكامل",
+  "nameRequired": "أدخل اسمك",
+  "confirmPassword": "تأكيد كلمة المرور",
+  "passwordsDontMatch": "كلمتا المرور غير متطابقتين",
+  "register": "إنشاء حساب",
+  "haveAccountLogin": "لديك حساب؟ تسجيل الدخول",
+  "registrationSuccess": "تم إنشاء الحساب. تحقق من بريدك إن لزم التأكيد ثم سجّل الدخول."
 }

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:scandesk/core/l10n/generated/app_localizations.dart';
+import 'package:scandesk/core/router/routes.dart';
+
 import '../cubit/auth_cubit.dart';
 import '../cubit/auth_state.dart';
 import '../widgets/login_form.dart';
@@ -56,7 +59,10 @@ class LoginPage extends StatelessWidget {
                             .read<AuthCubit>()
                             .signIn(email: email, password: password),
                       ),
-                      // TODO(S1): "No account? Register" link + register page
+                      TextButton(
+                        onPressed: () => context.go(Routes.register),
+                        child: Text(l10n.noAccountRegister),
+                      ),
                       // TODO(S1): "Forgot password?" link
                     ],
                   ),
