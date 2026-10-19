@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -21,7 +23,15 @@ void main() {
     role: UserRole.technician,
   );
 
-  setUp(() => repository = MockAuthRepository());
+  late StreamController<void> signedOut;
+
+  setUp(() {
+    repository = MockAuthRepository();
+    signedOut = StreamController<void>.broadcast();
+    when(() => repository.onSignedOut).thenAnswer((_) => signedOut.stream);
+  });
+
+  tearDown(() => signedOut.close());
 
   test('starts in AuthInitial', () {
     expect(AuthCubit(repository).state, const AuthInitial());
@@ -30,8 +40,8 @@ void main() {
   group('checkSession', () {
     blocTest<AuthCubit, AuthState>(
       'emits Authenticated when a session exists',
-      setUp: () => when(() => repository.getCurrentUser())
-          .thenAnswer((_) async => user),
+      setUp: () =>
+          when(() => repository.getCurrentUser()).thenAnswer((_) async => user),
       build: () => AuthCubit(repository),
       act: (cubit) => cubit.checkSession(),
       expect: () => [const Authenticated(user)],
@@ -39,8 +49,8 @@ void main() {
 
     blocTest<AuthCubit, AuthState>(
       'emits Unauthenticated when there is no session',
-      setUp: () => when(() => repository.getCurrentUser())
-          .thenAnswer((_) async => null),
+      setUp: () =>
+          when(() => repository.getCurrentUser()).thenAnswer((_) async => null),
       build: () => AuthCubit(repository),
       act: (cubit) => cubit.checkSession(),
       expect: () => [const Unauthenticated()],
@@ -74,6 +84,80 @@ void main() {
       expect: () => [
         const Authenticating(),
         const AuthError('Invalid login credentials'),
+      ],
+    );
+  });
+
+  blocTest<AuthCubit, AuthState>(
+    'goes to Unauthenticated when the session ends while logged in',
+    build: () => AuthCubit(repository),
+    seed: () => const Authenticated(user),
+    act: (cubit) => signedOut.add(null),
+    expect: () => [const Unauthenticated()],
+  );
+
+  group('signUp', () {
+    blocTest<AuthCubit, AuthState>(
+      'emits [Authenticating, SignUpSuccess] on success',
+      setUp: () => when(
+        () => repository.signUp(
+          fullName: any(named: 'fullName'),
+          email: any(named: 'email'),
+          password: any(named: 'password'),
+        ),
+      ).thenAnswer((_) async {}),
+      build: () => AuthCubit(repository),
+      act: (cubit) => cubit.signUp(
+        fullName: 'Test User',
+        email: 'a@b.com',
+        password: '123456',
+      ),
+      expect: () => [const Authenticating(), const SignUpSuccess()],
+    );
+
+    blocTest<AuthCubit, AuthState>(
+      'emits [Authenticating, AuthError] when the repository fails',
+      setUp: () => when(
+        () => repository.signUp(
+          fullName: any(named: 'fullName'),
+          email: any(named: 'email'),
+          password: any(named: 'password'),
+        ),
+      ).thenThrow(const AuthFailure('User already registered')),
+      build: () => AuthCubit(repository),
+      act: (cubit) => cubit.signUp(
+        fullName: 'Test User',
+        email: 'a@b.com',
+        password: '123456',
+      ),
+      expect: () => [
+        const Authenticating(),
+        const AuthError('User already registered'),
+      ],
+    );
+  });
+
+  group('sendPasswordReset', () {
+    blocTest<AuthCubit, AuthState>(
+      'emits [Authenticating, PasswordResetSent] on success',
+      setUp: () =>
+          when(() => repository.sendPasswordReset(any()))
+              .thenAnswer((_) async {}),
+      build: () => AuthCubit(repository),
+      act: (cubit) => cubit.sendPasswordReset('a@b.com'),
+      expect: () => [const Authenticating(), const PasswordResetSent()],
+    );
+
+    blocTest<AuthCubit, AuthState>(
+      'emits [Authenticating, AuthError] when the repository fails',
+      setUp: () =>
+          when(() => repository.sendPasswordReset(any()))
+              .thenThrow(const NetworkFailure()),
+      build: () => AuthCubit(repository),
+      act: (cubit) => cubit.sendPasswordReset('a@b.com'),
+      expect: () => [
+        const Authenticating(),
+        const AuthError('No internet connection'),
       ],
     );
   });

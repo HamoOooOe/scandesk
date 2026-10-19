@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:http/http.dart' show ClientException;
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../core/config/app_constants.dart';
@@ -18,17 +19,21 @@ class AuthRepositoryImpl implements AuthRepository {
   final SupabaseClient _client;
 
   @override
+  Stream<void> get onSignedOut => _client.auth.onAuthStateChange.where(
+    (state) => state.event == AuthChangeEvent.signedOut,
+  );
+
+  @override
   Future<AppUser?> getCurrentUser() async {
-    final user = _client.auth.currentUser;
-    if (user == null) return null;
-    return _guard(() => _loadProfile(user));
+    return _guard(() async {
+      final user = _client.auth.currentUser;
+      if (user == null) return null;
+      return _loadProfile(user);
+    });
   }
 
   @override
-  Future<AppUser> signIn({
-    required String email,
-    required String password,
-  }) {
+  Future<AppUser> signIn({required String email, required String password}) {
     return _guard(() async {
       final response = await _client.auth.signInWithPassword(
         email: email.trim(),
@@ -46,7 +51,6 @@ class AuthRepositoryImpl implements AuthRepository {
     required String email,
     required String password,
   }) {
-    // TODO(S1): build the register page and call this.
     // `full_name` is copied into `profiles` by the database trigger.
     return _guard(() async {
       await _client.auth.signUp(
@@ -55,6 +59,11 @@ class AuthRepositoryImpl implements AuthRepository {
         data: {'full_name': fullName.trim()},
       );
     });
+  }
+
+  @override
+  Future<void> sendPasswordReset(String email) {
+    return _guard(() => _client.auth.resetPasswordForEmail(email.trim()));
   }
 
   @override
@@ -80,6 +89,9 @@ class AuthRepositoryImpl implements AuthRepository {
     } on PostgrestException catch (e) {
       throw ServerFailure(e.message);
     } on SocketException {
+      throw const NetworkFailure();
+    } on ClientException {
+      // The http package wraps socket errors (no internet, DNS) in this.
       throw const NetworkFailure();
     } catch (e) {
       throw UnknownFailure(e.toString());
