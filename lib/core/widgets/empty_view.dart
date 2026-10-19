@@ -31,7 +31,10 @@ class EmptyView extends StatelessWidget {
               textAlign: TextAlign.center,
               style: theme.textTheme.titleMedium,
             ),
-            if (action != null) ...[const SizedBox(height: 16), action!],
+            if (action != null) ...[
+              const SizedBox(height: 16),
+              action!,
+            ],
           ],
         ),
       ),
