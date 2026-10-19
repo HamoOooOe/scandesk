@@ -78,6 +78,47 @@ void main() {
     );
   });
 
+  group('signUp', () {
+    blocTest<AuthCubit, AuthState>(
+      'emits [Authenticating, SignUpSuccess] on success',
+      setUp: () => when(
+        () => repository.signUp(
+          fullName: any(named: 'fullName'),
+          email: any(named: 'email'),
+          password: any(named: 'password'),
+        ),
+      ).thenAnswer((_) async {}),
+      build: () => AuthCubit(repository),
+      act: (cubit) => cubit.signUp(
+        fullName: 'Test User',
+        email: 'a@b.com',
+        password: '123456',
+      ),
+      expect: () => [const Authenticating(), const SignUpSuccess()],
+    );
+
+    blocTest<AuthCubit, AuthState>(
+      'emits [Authenticating, AuthError] when the repository fails',
+      setUp: () => when(
+        () => repository.signUp(
+          fullName: any(named: 'fullName'),
+          email: any(named: 'email'),
+          password: any(named: 'password'),
+        ),
+      ).thenThrow(const AuthFailure('User already registered')),
+      build: () => AuthCubit(repository),
+      act: (cubit) => cubit.signUp(
+        fullName: 'Test User',
+        email: 'a@b.com',
+        password: '123456',
+      ),
+      expect: () => [
+        const Authenticating(),
+        const AuthError('User already registered'),
+      ],
+    );
+  });
+
   blocTest<AuthCubit, AuthState>(
     'signOut emits Unauthenticated',
     setUp: () => when(() => repository.signOut()).thenAnswer((_) async {}),

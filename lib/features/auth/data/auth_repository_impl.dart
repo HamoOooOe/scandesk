@@ -45,7 +45,6 @@ class AuthRepositoryImpl implements AuthRepository {
     required String email,
     required String password,
   }) {
-    // TODO(S1): build the register page and call this.
     // `full_name` is copied into `profiles` by the database trigger.
     return _guard(() async {
       await _client.auth.signUp(

@@ -33,6 +33,12 @@ class Authenticated extends AuthState {
   List<Object?> get props => [user];
 }
 
+/// Account created. Supabase may require the user to confirm their email
+/// before logging in, so we send them back to the login screen.
+class SignUpSuccess extends AuthState {
+  const SignUpSuccess();
+}
+
 class AuthError extends AuthState {
   const AuthError(this.message);
   final String message;

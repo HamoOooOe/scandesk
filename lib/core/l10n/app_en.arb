@@ -9,6 +9,8 @@
   "logout": "Log out",
   "email": "Email",
   "password": "Password",
+  "invalidEmail": "Enter a valid email",
+  "passwordTooShort": "At least 6 characters",
   "noAccountRegister": "No account? Register",
   "home": "Home",
   "welcomeUser": "Welcome, {name}",
@@ -36,5 +38,12 @@
   "statusNew": "New",
   "statusAssigned": "Assigned",
   "statusInProgress": "In progress",
-  "statusResolved": "Resolved"
+  "statusResolved": "Resolved",
+  "fullName": "Full name",
+  "nameRequired": "Enter your name",
+  "confirmPassword": "Confirm password",
+  "passwordsDontMatch": "Passwords don't match",
+  "register": "Register",
+  "haveAccountLogin": "Already have an account? Log in",
+  "registrationSuccess": "Account created. Check your email if confirmation is required, then log in."
 }
