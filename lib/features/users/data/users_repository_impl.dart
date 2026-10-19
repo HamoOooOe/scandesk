@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:http/http.dart' show ClientException;
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../core/config/app_constants.dart';
@@ -56,6 +57,9 @@ class UsersRepositoryImpl implements UsersRepository {
     } on PostgrestException catch (e) {
       throw ServerFailure(e.message);
     } on SocketException {
+      throw const NetworkFailure();
+    } on ClientException {
+      // The http package wraps socket errors (no internet, DNS) in this.
       throw const NetworkFailure();
     } catch (e) {
       throw UnknownFailure(e.toString());
