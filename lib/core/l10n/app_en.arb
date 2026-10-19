@@ -45,5 +45,9 @@
   "passwordsDontMatch": "Passwords don't match",
   "register": "Register",
   "haveAccountLogin": "Already have an account? Log in",
-  "registrationSuccess": "Account created. Check your email if confirmation is required, then log in."
+  "registrationSuccess": "Account created. Check your email if confirmation is required, then log in.",
+  "forgotPassword": "Forgot password?",
+  "resetPasswordHint": "Enter your email and we'll send you a link to reset your password.",
+  "sendResetLink": "Send reset link",
+  "resetEmailSent": "Reset email sent. Check your inbox."
 }
