@@ -7,6 +7,10 @@ class AppConstants {
   /// Prefix inside every asset QR code, e.g. `scandesk://asset/PC-0042`.
   static const String qrPrefix = 'scandesk://asset/';
 
+  /// Where the password-reset email link sends the user back into the app.
+  /// Must also be listed under Supabase -> Authentication -> URL Configuration.
+  static const String passwordResetRedirect = 'scandesk://reset-password';
+
   static const Duration networkTimeout = Duration(seconds: 15);
   static const int pageSize = 20;
 

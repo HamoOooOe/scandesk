@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:http/http.dart' show ClientException;
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../core/config/app_constants.dart';
@@ -18,17 +19,33 @@ class AuthRepositoryImpl implements AuthRepository {
   final SupabaseClient _client;
 
   @override
-  Future<AppUser?> getCurrentUser() async {
-    final user = _client.auth.currentUser;
-    if (user == null) return null;
-    return _guard(() => _loadProfile(user));
+  Stream<void> get onSignedOut => _client.auth.onAuthStateChange.where(
+    (state) => state.event == AuthChangeEvent.signedOut,
+  );
+
+  @override
+  Stream<void> get onPasswordRecovery => _client.auth.onAuthStateChange.where(
+    (state) => state.event == AuthChangeEvent.passwordRecovery,
+  );
+
+  @override
+  Future<void> updatePassword(String newPassword) {
+    return _guard(
+      () => _client.auth.updateUser(UserAttributes(password: newPassword)),
+    );
   }
 
   @override
-  Future<AppUser> signIn({
-    required String email,
-    required String password,
-  }) {
+  Future<AppUser?> getCurrentUser() async {
+    return _guard(() async {
+      final user = _client.auth.currentUser;
+      if (user == null) return null;
+      return _loadProfile(user);
+    });
+  }
+
+  @override
+  Future<AppUser> signIn({required String email, required String password}) {
     return _guard(() async {
       final response = await _client.auth.signInWithPassword(
         email: email.trim(),
@@ -46,7 +63,6 @@ class AuthRepositoryImpl implements AuthRepository {
     required String email,
     required String password,
   }) {
-    // TODO(S1): build the register page and call this.
     // `full_name` is copied into `profiles` by the database trigger.
     return _guard(() async {
       await _client.auth.signUp(
@@ -55,6 +71,16 @@ class AuthRepositoryImpl implements AuthRepository {
         data: {'full_name': fullName.trim()},
       );
     });
+  }
+
+  @override
+  Future<void> sendPasswordReset(String email) {
+    return _guard(
+      () => _client.auth.resetPasswordForEmail(
+        email.trim(),
+        redirectTo: AppConstants.passwordResetRedirect,
+      ),
+    );
   }
 
   @override
@@ -76,10 +102,16 @@ class AuthRepositoryImpl implements AuthRepository {
     } on Failure {
       rethrow;
     } on AuthException catch (e) {
+      if (e.code == 'invalid_credentials') {
+        throw const AuthFailure('Wrong email or password');
+      }
       throw AuthFailure(e.message);
     } on PostgrestException catch (e) {
       throw ServerFailure(e.message);
     } on SocketException {
+      throw const NetworkFailure();
+    } on ClientException {
+      // The http package wraps socket errors (no internet, DNS) in this.
       throw const NetworkFailure();
     } catch (e) {
       throw UnknownFailure(e.toString());

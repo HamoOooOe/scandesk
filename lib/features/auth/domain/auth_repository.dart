@@ -18,5 +18,18 @@ abstract interface class AuthRepository {
     required String password,
   });
 
+  /// Emits whenever the saved session ends on its own (expired or revoked
+  /// token, or sign-out from another place).
+  Stream<void> get onSignedOut;
+
+  /// Emits when the user opens the link from a password-reset email.
+  Stream<void> get onPasswordRecovery;
+
+  /// Sets a new password for the current (recovery) session.
+  Future<void> updatePassword(String newPassword);
+
+  /// Sends a password-reset email through Supabase Auth.
+  Future<void> sendPasswordReset(String email);
+
   Future<void> signOut();
 }
