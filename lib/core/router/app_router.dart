@@ -1,14 +1,15 @@
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../features/auth/domain/user_role.dart';
 import '../../features/auth/presentation/cubit/auth_cubit.dart';
 import '../../features/auth/presentation/cubit/auth_state.dart';
 import '../../features/auth/presentation/pages/forgot_password_page.dart';
 import '../../features/auth/presentation/pages/login_page.dart';
 import '../../features/auth/presentation/pages/register_page.dart';
 import '../../features/auth/presentation/pages/splash_page.dart';
-import '../../features/home/presentation/pages/role_home_page.dart';
+import '../../features/home/presentation/pages/employee_home_page.dart';
+import '../../features/home/presentation/pages/manager_home_page.dart';
+import '../../features/home/presentation/pages/technician_home_page.dart';
 import 'go_router_refresh_stream.dart';
 import 'routes.dart';
 
@@ -49,17 +50,15 @@ class AppRouter {
       ),
       GoRoute(
         path: Routes.employeeHome,
-        builder: (context, state) =>
-            const RoleHomePage(role: UserRole.employee),
+        builder: (context, state) => const EmployeeHomePage(),
       ),
       GoRoute(
         path: Routes.technicianHome,
-        builder: (context, state) =>
-            const RoleHomePage(role: UserRole.technician),
+        builder: (context, state) => const TechnicianHomePage(),
       ),
       GoRoute(
         path: Routes.managerHome,
-        builder: (context, state) => const RoleHomePage(role: UserRole.manager),
+        builder: (context, state) => const ManagerHomePage(),
       ),
     ],
   );

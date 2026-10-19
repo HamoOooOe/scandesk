@@ -12,6 +12,9 @@ import 'package:scandesk/features/auth/domain/app_user.dart';
 import 'package:scandesk/features/auth/domain/user_role.dart';
 import 'package:scandesk/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:scandesk/features/auth/presentation/cubit/auth_state.dart';
+import 'package:scandesk/features/home/presentation/pages/employee_home_page.dart';
+import 'package:scandesk/features/home/presentation/pages/manager_home_page.dart';
+import 'package:scandesk/features/home/presentation/pages/technician_home_page.dart';
 
 class MockAuthCubit extends MockCubit<AuthState> implements AuthCubit {}
 
@@ -92,5 +95,20 @@ void main() {
     router.go(Routes.managerHome);
     await tester.pumpAndSettle();
     expect(locationOf(router), Routes.employeeHome);
+  });
+
+  testWidgets('three roles show three different screens', (tester) async {
+    final pages = {
+      UserRole.employee: find.byType(EmployeeHomePage),
+      UserRole.technician: find.byType(TechnicianHomePage),
+      UserRole.manager: find.byType(ManagerHomePage),
+    };
+    for (final entry in pages.entries) {
+      await pumpApp(tester, Authenticated(userWith(entry.key)));
+      expect(entry.value, findsOneWidget);
+      for (final other in pages.entries.where((e) => e.key != entry.key)) {
+        expect(other.value, findsNothing);
+      }
+    }
   });
 }

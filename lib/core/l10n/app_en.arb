@@ -49,5 +49,8 @@
   "forgotPassword": "Forgot password?",
   "resetPasswordHint": "Enter your email and we'll send you a link to reset your password.",
   "sendResetLink": "Send reset link",
-  "resetEmailSent": "Reset email sent. Check your inbox."
+  "resetEmailSent": "Reset email sent. Check your inbox.",
+  "employeeHomeHint": "Report a problem with a device and follow your tickets. Coming soon.",
+  "technicianHomeHint": "Tickets assigned to you will appear here. Coming soon.",
+  "managerHomeHint": "Assets, tickets and your team in one place. Coming soon."
 }
