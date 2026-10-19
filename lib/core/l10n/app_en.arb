@@ -9,6 +9,8 @@
   "logout": "Log out",
   "email": "Email",
   "password": "Password",
+  "invalidEmail": "Enter a valid email",
+  "passwordTooShort": "At least 6 characters",
   "noAccountRegister": "No account? Register",
   "home": "Home",
   "welcomeUser": "Welcome, {name}",
