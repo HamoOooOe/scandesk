@@ -44,6 +44,16 @@ class PasswordResetSent extends AuthState {
   const PasswordResetSent();
 }
 
+/// The user opened the reset link and must now choose a new password.
+class PasswordRecovery extends AuthState {
+  const PasswordRecovery();
+}
+
+/// The new password was saved.
+class PasswordUpdated extends AuthState {
+  const PasswordUpdated();
+}
+
 class AuthError extends AuthState {
   const AuthError(this.message);
   final String message;

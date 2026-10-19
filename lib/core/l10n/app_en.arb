@@ -54,5 +54,9 @@
   "technicianHomeHint": "Tickets assigned to you will appear here. Coming soon.",
   "managerHomeHint": "Assets, tickets and your team in one place. Coming soon.",
   "manageUsers": "Manage users",
-  "changeRole": "Change role"
+  "changeRole": "Change role",
+  "setNewPassword": "Set a new password",
+  "newPassword": "New password",
+  "savePassword": "Save password",
+  "passwordUpdated": "Password updated. Log in with your new password."
 }

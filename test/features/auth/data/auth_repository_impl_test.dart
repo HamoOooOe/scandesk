@@ -251,11 +251,21 @@ void main() {
 
   group('sendPasswordReset', () {
     test('asks Supabase to send the reset email', () async {
-      when(() => auth.resetPasswordForEmail(any())).thenAnswer((_) async {});
+      when(
+        () => auth.resetPasswordForEmail(
+          any(),
+          redirectTo: any(named: 'redirectTo'),
+        ),
+      ).thenAnswer((_) async {});
 
       await repository.sendPasswordReset(' a@b.com ');
 
-      verify(() => auth.resetPasswordForEmail('a@b.com')).called(1);
+      verify(
+        () => auth.resetPasswordForEmail(
+          'a@b.com',
+          redirectTo: 'scandesk://reset-password',
+        ),
+      ).called(1);
     });
   });
 }

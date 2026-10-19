@@ -111,4 +111,11 @@ void main() {
       }
     }
   });
+
+  testWidgets('opening the reset link shows the new-password screen', (
+    tester,
+  ) async {
+    final router = await pumpApp(tester, const PasswordRecovery());
+    expect(locationOf(router), Routes.resetPassword);
+  });
 }

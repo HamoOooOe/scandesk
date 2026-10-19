@@ -6,6 +6,7 @@ import '../../features/auth/presentation/cubit/auth_state.dart';
 import '../../features/auth/presentation/pages/forgot_password_page.dart';
 import '../../features/auth/presentation/pages/login_page.dart';
 import '../../features/auth/presentation/pages/register_page.dart';
+import '../../features/auth/presentation/pages/reset_password_page.dart';
 import '../../features/auth/presentation/pages/splash_page.dart';
 import '../../features/home/presentation/pages/employee_home_page.dart';
 import '../../features/home/presentation/pages/manager_home_page.dart';
@@ -25,6 +26,7 @@ class AppRouter {
     Routes.login,
     Routes.register,
     Routes.forgotPassword,
+    Routes.resetPassword,
   };
 
   late final GoRouter router = GoRouter(
@@ -44,6 +46,10 @@ class AppRouter {
       GoRoute(
         path: Routes.forgotPassword,
         builder: (context, state) => const ForgotPasswordPage(),
+      ),
+      GoRoute(
+        path: Routes.resetPassword,
+        builder: (context, state) => const ResetPasswordPage(),
       ),
       GoRoute(
         path: Routes.register,
@@ -77,6 +83,11 @@ class AppRouter {
     // Still reading the saved session: wait on the splash screen.
     if (authState is AuthInitial) {
       return location == Routes.splash ? null : Routes.splash;
+    }
+
+    // The user came from the reset email: they must set a new password.
+    if (authState is PasswordRecovery) {
+      return location == Routes.resetPassword ? null : Routes.resetPassword;
     }
 
     // Request in progress: stay where we are.
