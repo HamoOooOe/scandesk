@@ -76,6 +76,9 @@ class AuthRepositoryImpl implements AuthRepository {
     } on Failure {
       rethrow;
     } on AuthException catch (e) {
+      if (e.code == 'invalid_credentials') {
+        throw const AuthFailure('Wrong email or password');
+      }
       throw AuthFailure(e.message);
     } on PostgrestException catch (e) {
       throw ServerFailure(e.message);
