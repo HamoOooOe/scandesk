@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:scandesk/core/config/app_settings.dart';
 import 'package:scandesk/core/l10n/generated/app_localizations.dart';
@@ -7,6 +8,8 @@ import 'package:scandesk/core/widgets/empty_view.dart';
 import 'package:scandesk/core/widgets/error_view.dart';
 import 'package:scandesk/core/widgets/loading_view.dart';
 import 'package:scandesk/core/widgets/primary_button.dart';
+
+import '../../../auth/presentation/cubit/auth_cubit.dart';
 import '../widgets/supabase_status_card.dart';
 
 /// Sprint 0 home: shows the foundation working (Supabase connection,
@@ -58,6 +61,11 @@ class _HomePageState extends State<HomePage> {
             tooltip: l10n.changeTheme,
             onPressed: _toggleTheme,
             icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
+          ),
+          IconButton(
+            tooltip: l10n.logout,
+            onPressed: () => context.read<AuthCubit>().signOut(),
+            icon: const Icon(Icons.logout),
           ),
         ],
       ),

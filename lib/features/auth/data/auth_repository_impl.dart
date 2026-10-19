@@ -19,16 +19,15 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<AppUser?> getCurrentUser() async {
-    final user = _client.auth.currentUser;
-    if (user == null) return null;
-    return _guard(() => _loadProfile(user));
+    return _guard(() async {
+      final user = _client.auth.currentUser;
+      if (user == null) return null;
+      return _loadProfile(user);
+    });
   }
 
   @override
-  Future<AppUser> signIn({
-    required String email,
-    required String password,
-  }) {
+  Future<AppUser> signIn({required String email, required String password}) {
     return _guard(() async {
       final response = await _client.auth.signInWithPassword(
         email: email.trim(),
