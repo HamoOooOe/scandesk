@@ -14,6 +14,10 @@ class Routes {
   static const String technicianHome = '/technician';
   static const String managerHome = '/manager';
 
+  /// Manager-only. It sits under /manager, so the role guard in the
+  /// router keeps everyone else out.
+  static const String manageUsers = '/manager/users';
+
   /// The home screen path for a role.
   static String homeFor(UserRole role) => switch (role) {
     UserRole.employee => employeeHome,
