@@ -1,17 +1,18 @@
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../features/auth/domain/user_role.dart';
 import '../../features/auth/presentation/cubit/auth_cubit.dart';
 import '../../features/auth/presentation/cubit/auth_state.dart';
 import '../../features/auth/presentation/pages/forgot_password_page.dart';
 import '../../features/auth/presentation/pages/login_page.dart';
 import '../../features/auth/presentation/pages/register_page.dart';
 import '../../features/auth/presentation/pages/splash_page.dart';
-import '../../features/home/presentation/pages/home_page.dart';
+import '../../features/home/presentation/pages/role_home_page.dart';
 import 'go_router_refresh_stream.dart';
 import 'routes.dart';
 
-/// All screens of the app, plus the auth guard.
+/// All screens of the app, plus the auth + role guard.
 class AppRouter {
   AppRouter(this._authCubit);
 
@@ -46,7 +47,20 @@ class AppRouter {
         path: Routes.register,
         builder: (context, state) => const RegisterPage(),
       ),
-      GoRoute(path: Routes.home, builder: (context, state) => const HomePage()),
+      GoRoute(
+        path: Routes.employeeHome,
+        builder: (context, state) =>
+            const RoleHomePage(role: UserRole.employee),
+      ),
+      GoRoute(
+        path: Routes.technicianHome,
+        builder: (context, state) =>
+            const RoleHomePage(role: UserRole.technician),
+      ),
+      GoRoute(
+        path: Routes.managerHome,
+        builder: (context, state) => const RoleHomePage(role: UserRole.manager),
+      ),
     ],
   );
 
@@ -59,16 +73,23 @@ class AppRouter {
       return location == Routes.splash ? null : Routes.splash;
     }
 
-    // Login request in progress: stay where we are.
+    // Request in progress: stay where we are.
     if (authState is Authenticating) return null;
 
     if (authState is Authenticated) {
+      final ownHome = Routes.homeFor(authState.user.role);
       final isEntryScreen =
           location == Routes.splash || _publicRoutes.contains(location);
-      return isEntryScreen ? Routes.home : null;
+      if (isEntryScreen) return ownHome;
+
+      // A role may only open its own screens.
+      final owner = Routes.roleOwning(location);
+      if (owner != null && owner != authState.user.role) return ownHome;
+      return null;
     }
 
-    // Unauthenticated or AuthError: only public screens are allowed.
+    // Unauthenticated, SignUpSuccess, PasswordResetSent or AuthError:
+    // only public screens are allowed.
     return _publicRoutes.contains(location) ? null : Routes.login;
   }
 }
