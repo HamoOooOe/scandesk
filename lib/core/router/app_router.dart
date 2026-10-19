@@ -10,6 +10,7 @@ import '../../features/auth/presentation/pages/splash_page.dart';
 import '../../features/home/presentation/pages/employee_home_page.dart';
 import '../../features/home/presentation/pages/manager_home_page.dart';
 import '../../features/home/presentation/pages/technician_home_page.dart';
+import '../../features/users/presentation/pages/users_page.dart';
 import 'go_router_refresh_stream.dart';
 import 'routes.dart';
 
@@ -59,6 +60,12 @@ class AppRouter {
       GoRoute(
         path: Routes.managerHome,
         builder: (context, state) => const ManagerHomePage(),
+        routes: [
+          GoRoute(
+            path: 'users',
+            builder: (context, state) => const UsersPage(),
+          ),
+        ],
       ),
     ],
   );

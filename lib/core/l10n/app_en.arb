@@ -52,5 +52,7 @@
   "resetEmailSent": "Reset email sent. Check your inbox.",
   "employeeHomeHint": "Report a problem with a device and follow your tickets. Coming soon.",
   "technicianHomeHint": "Tickets assigned to you will appear here. Coming soon.",
-  "managerHomeHint": "Assets, tickets and your team in one place. Coming soon."
+  "managerHomeHint": "Assets, tickets and your team in one place. Coming soon.",
+  "manageUsers": "Manage users",
+  "changeRole": "Change role"
 }
