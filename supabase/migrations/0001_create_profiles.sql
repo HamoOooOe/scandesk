@@ -25,11 +25,13 @@ as $$
 $$;
 
 -- Everyone can read their own profile; managers can read all profiles.
+drop policy if exists "read own profile or manager reads all" on public.profiles;
 create policy "read own profile or manager reads all"
 on public.profiles for select
 using (id = auth.uid() or public.my_role() = 'manager');
 
 -- Only managers can change profiles (e.g. a user's role).
+drop policy if exists "managers update profiles" on public.profiles;
 create policy "managers update profiles"
 on public.profiles for update
 using (public.my_role() = 'manager');
@@ -52,3 +54,23 @@ drop trigger if exists on_auth_user_created on auth.users;
 create trigger on_auth_user_created
   after insert on auth.users
   for each row execute function public.handle_new_user();
+
+-- Keep updated_at accurate whenever a profile changes.
+create or replace function public.set_updated_at()
+returns trigger
+language plpgsql
+as $$
+begin
+  new.updated_at = now();
+  return new;
+end;
+$$;
+
+drop trigger if exists profiles_set_updated_at on public.profiles;
+create trigger profiles_set_updated_at
+  before update on public.profiles
+  for each row execute function public.set_updated_at();
+
+-- Bootstrap: nobody can promote the first manager through the app (only managers
+-- can change roles), so do it once by hand in the SQL Editor:
+--   update public.profiles set role = 'manager' where id = '<user uuid>';
