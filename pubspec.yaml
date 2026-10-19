@@ -29,6 +29,7 @@ dependencies:
   intl: any
 
   cupertino_icons: ^1.0.8
+  http: ^1.6.0
 
   # Added in later sprints (see the sprint plan):
   # S3: mobile_scanner, qr_flutter, pdf, printing
