@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart' show ClientException;
 import 'package:mocktail/mocktail.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -165,6 +166,20 @@ void main() {
         throwsA(isA<NetworkFailure>()),
       );
     });
+  });
+
+  test('maps an http ClientException (DNS/offline) to NetworkFailure', () {
+    when(
+      () => auth.signInWithPassword(
+        email: any(named: 'email'),
+        password: any(named: 'password'),
+      ),
+    ).thenThrow(ClientException('Failed host lookup'));
+
+    expect(
+      () => repository.signIn(email: 'a@b.com', password: '123456'),
+      throwsA(isA<NetworkFailure>()),
+    );
   });
 
   group('signUp', () {
