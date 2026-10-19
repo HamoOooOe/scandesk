@@ -14,14 +14,20 @@ class AuthCubit extends Cubit<AuthState> {
     _signedOutSubscription = _repository.onSignedOut.listen((_) {
       if (state is Authenticated) emit(const Unauthenticated());
     });
+    // The reset-email link was opened: show the "new password" screen.
+    _recoverySubscription = _repository.onPasswordRecovery.listen(
+      (_) => emit(const PasswordRecovery()),
+    );
   }
 
   final AuthRepository _repository;
   late final StreamSubscription<void> _signedOutSubscription;
+  late final StreamSubscription<void> _recoverySubscription;
 
   @override
   Future<void> close() {
     _signedOutSubscription.cancel();
+    _recoverySubscription.cancel();
     return super.close();
   }
 
@@ -68,6 +74,16 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       await _repository.sendPasswordReset(email);
       emit(const PasswordResetSent());
+    } on Failure catch (failure) {
+      emit(AuthError(failure.message));
+    }
+  }
+
+  Future<void> updatePassword(String newPassword) async {
+    emit(const Authenticating());
+    try {
+      await _repository.updatePassword(newPassword);
+      emit(const PasswordUpdated());
     } on Failure catch (failure) {
       emit(AuthError(failure.message));
     }
