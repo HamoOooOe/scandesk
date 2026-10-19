@@ -119,6 +119,29 @@ void main() {
     );
   });
 
+  group('sendPasswordReset', () {
+    blocTest<AuthCubit, AuthState>(
+      'emits [Authenticating, PasswordResetSent] on success',
+      setUp: () => when(() => repository.sendPasswordReset(any()))
+          .thenAnswer((_) async {}),
+      build: () => AuthCubit(repository),
+      act: (cubit) => cubit.sendPasswordReset('a@b.com'),
+      expect: () => [const Authenticating(), const PasswordResetSent()],
+    );
+
+    blocTest<AuthCubit, AuthState>(
+      'emits [Authenticating, AuthError] when the repository fails',
+      setUp: () => when(() => repository.sendPasswordReset(any()))
+          .thenThrow(const NetworkFailure()),
+      build: () => AuthCubit(repository),
+      act: (cubit) => cubit.sendPasswordReset('a@b.com'),
+      expect: () => [
+        const Authenticating(),
+        const AuthError('No internet connection'),
+      ],
+    );
+  });
+
   blocTest<AuthCubit, AuthState>(
     'signOut emits Unauthenticated',
     setUp: () => when(() => repository.signOut()).thenAnswer((_) async {}),

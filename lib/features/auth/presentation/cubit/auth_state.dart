@@ -39,6 +39,11 @@ class SignUpSuccess extends AuthState {
   const SignUpSuccess();
 }
 
+/// The reset email was sent.
+class PasswordResetSent extends AuthState {
+  const PasswordResetSent();
+}
+
 class AuthError extends AuthState {
   const AuthError(this.message);
   final String message;

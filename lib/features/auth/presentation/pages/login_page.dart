@@ -63,7 +63,10 @@ class LoginPage extends StatelessWidget {
                         onPressed: () => context.go(Routes.register),
                         child: Text(l10n.noAccountRegister),
                       ),
-                      // TODO(S1): "Forgot password?" link
+                      TextButton(
+                        onPressed: () => context.go(Routes.forgotPassword),
+                        child: Text(l10n.forgotPassword),
+                      ),
                     ],
                   ),
                 ),

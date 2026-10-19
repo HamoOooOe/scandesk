@@ -18,5 +18,8 @@ abstract interface class AuthRepository {
     required String password,
   });
 
+  /// Sends a password-reset email through Supabase Auth.
+  Future<void> sendPasswordReset(String email);
+
   Future<void> signOut();
 }

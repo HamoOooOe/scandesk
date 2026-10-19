@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../features/auth/presentation/cubit/auth_cubit.dart';
 import '../../features/auth/presentation/cubit/auth_state.dart';
+import '../../features/auth/presentation/pages/forgot_password_page.dart';
 import '../../features/auth/presentation/pages/login_page.dart';
 import '../../features/auth/presentation/pages/register_page.dart';
 import '../../features/auth/presentation/pages/splash_page.dart';
@@ -17,7 +18,11 @@ class AppRouter {
   final AuthCubit _authCubit;
 
   /// Screens a logged-out user may open.
-  static const _publicRoutes = {Routes.login, Routes.register};
+  static const _publicRoutes = {
+    Routes.login,
+    Routes.register,
+    Routes.forgotPassword,
+  };
 
   late final GoRouter router = GoRouter(
     initialLocation: Routes.splash,
@@ -32,6 +37,10 @@ class AppRouter {
       GoRoute(
         path: Routes.login,
         builder: (context, state) => const LoginPage(),
+      ),
+      GoRoute(
+        path: Routes.forgotPassword,
+        builder: (context, state) => const ForgotPasswordPage(),
       ),
       GoRoute(
         path: Routes.register,
