@@ -18,6 +18,11 @@ class AuthRepositoryImpl implements AuthRepository {
   final SupabaseClient _client;
 
   @override
+  Stream<void> get onSignedOut => _client.auth.onAuthStateChange.where(
+    (state) => state.event == AuthChangeEvent.signedOut,
+  );
+
+  @override
   Future<AppUser?> getCurrentUser() async {
     return _guard(() async {
       final user = _client.auth.currentUser;
