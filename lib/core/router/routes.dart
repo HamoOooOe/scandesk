@@ -19,6 +19,26 @@ class Routes {
   /// router keeps everyone else out.
   static const String manageUsers = '/manager/users';
 
+  // Shared screens (any signed-in user).
+  static const String scan = '/scan';
+  static String assetPath(String id) => '/asset/$id';
+  static String assetQrPath(String id) => '/asset/$id/qr';
+  static String reportPath(String assetId) => '/report/$assetId';
+  static String ticketPath(String id) => '/ticket/$id';
+
+  // Manager-only screens (see [managerOnly]).
+  static const String assetNew = '/assets/new';
+  static String assetEditPath(String id) => '/assets/$id/edit';
+  static const String sites = '/sites';
+  static const String labelSheet = '/labels';
+
+  /// Paths only a manager may open, besides /manager itself.
+  static bool managerOnly(String location) =>
+      location == assetNew ||
+      location.startsWith('/assets/') ||
+      location == sites ||
+      location == labelSheet;
+
   /// The home screen path for a role.
   static String homeFor(UserRole role) => switch (role) {
     UserRole.employee => employeeHome,

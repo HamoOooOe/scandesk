@@ -1,19 +1,12 @@
 import 'package:flutter/material.dart';
 
-import 'package:scandesk/core/l10n/generated/app_localizations.dart';
-import '../widgets/role_home_scaffold.dart';
+import '../../../auth/domain/user_role.dart';
+import '../widgets/role_shell.dart';
 
-/// Employees report problems and follow their own tickets (later sprints).
+/// Employees report problems and follow their tickets.
 class EmployeeHomePage extends StatelessWidget {
   const EmployeeHomePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    return RoleHomeScaffold(
-      title: l10n.roleEmployee,
-      icon: Icons.report_problem_outlined,
-      description: l10n.employeeHomeHint,
-    );
-  }
+  Widget build(BuildContext context) => const RoleShell(role: UserRole.employee);
 }

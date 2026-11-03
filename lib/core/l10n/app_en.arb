@@ -58,5 +58,268 @@
   "setNewPassword": "Set a new password",
   "newPassword": "New password",
   "savePassword": "Save password",
-  "passwordUpdated": "Password updated. Log in with your new password."
+  "passwordUpdated": "Password updated. Log in with your new password.",
+  "navQueue": "Queue",
+  "navScan": "Scan",
+  "navAssets": "Assets",
+  "navTickets": "Tickets",
+  "navOverview": "Overview",
+  "navProfile": "Profile",
+  "navMyTickets": "My reports",
+  "demoBadge": "Demo data",
+  "demoTryAs": "Try the demo as",
+  "demoHint": "Synthetic data. No account needed.",
+  "ticketFilterActive": "Active",
+  "ticketFilterMine": "Mine",
+  "ticketFilterUnassigned": "Unassigned",
+  "ticketFilterResolved": "Resolved",
+  "ticketFilterAll": "All",
+  "statusOpen": "Open",
+  "priorityLow": "Low",
+  "priorityMedium": "Medium",
+  "priorityHigh": "High",
+  "ticketsEmpty": "Nothing here",
+  "ticketsEmptyHint": "New reports show up the moment they are sent.",
+  "ticketUpdated": "Updated",
+  "ticketDetails": "Ticket",
+  "reportedBy": "Reported by {name}",
+  "@reportedBy": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "assignedToName": "Assigned to {name}",
+  "@assignedToName": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "notAssignedYet": "Not assigned yet",
+  "assignTo": "Assign to",
+  "startWork": "Start work",
+  "resolveTicket": "Mark resolved",
+  "logWork": "Log work",
+  "workNote": "What did you do?",
+  "minutesSpent": "Minutes spent",
+  "partsUsed": "Parts used (optional)",
+  "workLogged": "Work logged",
+  "workLogTitle": "Work log",
+  "noWorkYet": "No work logged yet.",
+  "minutesShort": "{count} min",
+  "@minutesShort": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "photosTitle": "Photos",
+  "reportTitle": "Report an issue",
+  "whatsWrong": "What's wrong?",
+  "describeProblem": "Describe the problem",
+  "priorityLabel": "Priority",
+  "addPhotos": "Photos (up to 3)",
+  "takePhoto": "Camera",
+  "fromGallery": "Gallery",
+  "sendReport": "Send report",
+  "reportSent": "Report sent. IT has been notified.",
+  "quickWontTurnOn": "Won't turn on",
+  "quickSlow": "Very slow",
+  "quickScreen": "Screen problem",
+  "quickNetwork": "No network",
+  "quickPrinting": "Printing problem",
+  "titleRequired": "Say what's wrong in a few words",
+  "scanTitle": "Scan a sticker",
+  "scanHint": "Point the camera at the QR sticker on the device.",
+  "enterCode": "Enter code by hand",
+  "enterCodeHint": "e.g. LAP-0007",
+  "openAction": "Open",
+  "scanNotOurs": "That is not a ScanDesk label.",
+  "assetNotFoundCode": "No device with that code.",
+  "simulateScan": "Demo: simulate a scan",
+  "flashlight": "Flashlight",
+  "cameraOff": "The camera is off. Allow it in Settings or enter the code by hand.",
+  "scanToReport": "Scan the device sticker to report a problem",
+  "assetsTitle": "Assets",
+  "searchAssets": "Search code, name, serial or person",
+  "filterAll": "All",
+  "assetStatusActive": "Active",
+  "assetStatusInRepair": "In repair",
+  "assetStatusStorage": "In storage",
+  "assetStatusRetired": "Retired",
+  "catLaptop": "Laptop",
+  "catDesktop": "Desktop",
+  "catMonitor": "Monitor",
+  "catPrinter": "Printer",
+  "catPhone": "Phone",
+  "catNetwork": "Network",
+  "catOther": "Other",
+  "assetCount": "{count} assets",
+  "@assetCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "addAsset": "Add asset",
+  "editAsset": "Edit asset",
+  "fieldName": "Name",
+  "fieldBrand": "Brand",
+  "fieldModel": "Model",
+  "fieldSerial": "Serial number",
+  "fieldCategory": "Category",
+  "fieldStatus": "Status",
+  "fieldSite": "Site",
+  "fieldLocation": "Location",
+  "fieldAssignedTo": "Used by",
+  "fieldPurchase": "Purchased",
+  "fieldWarranty": "Warranty until",
+  "fieldNotes": "Notes",
+  "assetCodeLabel": "Asset code",
+  "codeOnSave": "Created when you save",
+  "saveAction": "Save",
+  "savedMessage": "Saved",
+  "requiredField": "Required",
+  "serviceRecord": "Service record",
+  "lastServicedOn": "Last serviced {date}",
+  "@lastServicedOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "neverServiced": "Never serviced",
+  "warrantyUntilDate": "Warranty until {date}",
+  "@warrantyUntilDate": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "warrantyExpired": "Out of warranty",
+  "openTicketsTitle": "Open tickets",
+  "repairHistory": "Repair history",
+  "showQr": "Show QR",
+  "noAssets": "No devices match",
+  "noAssetsHint": "Try another search or clear the filters.",
+  "clearFilters": "Clear filters",
+  "noHistory": "Nothing on record yet.",
+  "assetGone": "This asset no longer exists.",
+  "sitesTitle": "Sites and locations",
+  "addSite": "Add site",
+  "addLocation": "Add location",
+  "siteName": "Site name",
+  "cityLabel": "City",
+  "locationName": "Location name",
+  "locationsCount": "{count} locations",
+  "@locationsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "deleteAction": "Delete",
+  "cancelAction": "Cancel",
+  "deleteSiteConfirm": "Delete this site and its locations?",
+  "noSites": "No sites yet",
+  "qrTitle": "Device label",
+  "shareLabel": "Share label",
+  "printLabels": "Print labels",
+  "labelSheetTitle": "Label sheet",
+  "selectedCount": "{count} selected",
+  "@selectedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "selectAll": "Select all",
+  "printSheet": "Print A4 sheet",
+  "stickHint": "Stick this on the device",
+  "overviewTitle": "Overview",
+  "openNow": "Open now",
+  "overdueLabel": "Overdue",
+  "avgResolve": "Average time to resolve",
+  "hoursShort": "{count} h",
+  "@hoursShort": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "flowTitle": "Where tickets are",
+  "reportsWeek": "Reports, last 7 days",
+  "mostRepaired": "Most repaired devices",
+  "ticketsCount": "{count} tickets",
+  "@ticketsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "devicesInRepair": "In repair",
+  "totalDevices": "Devices",
+  "noData": "No data yet",
+  "profileTitle": "Profile",
+  "languageLabel": "Language",
+  "appearanceLabel": "Appearance",
+  "themeSystem": "System",
+  "themeLight": "Light",
+  "themeDark": "Dark",
+  "adminTools": "Admin tools",
+  "offlineBanner": "You're offline. Showing saved data.",
+  "pendingSync": "{count} waiting to sync",
+  "@pendingSync": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "backOnline": "Back online",
+  "justNow": "just now",
+  "minutesAgo": "{count} min ago",
+  "@minutesAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "hoursAgo": "{count} h ago",
+  "@hoursAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "daysAgo": "{count} d ago",
+  "@daysAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "helloName": "Hello, {name}",
+  "@helloName": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "startReport": "Scan to report"
 }

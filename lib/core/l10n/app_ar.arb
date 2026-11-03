@@ -51,5 +51,268 @@
   "setNewPassword": "تعيين كلمة مرور جديدة",
   "newPassword": "كلمة المرور الجديدة",
   "savePassword": "حفظ كلمة المرور",
-  "passwordUpdated": "تم تحديث كلمة المرور. سجّل الدخول بكلمة المرور الجديدة."
+  "passwordUpdated": "تم تحديث كلمة المرور. سجّل الدخول بكلمة المرور الجديدة.",
+  "navQueue": "الطابور",
+  "navScan": "مسح",
+  "navAssets": "الأصول",
+  "navTickets": "التذاكر",
+  "navOverview": "نظرة عامة",
+  "navProfile": "الحساب",
+  "navMyTickets": "بلاغاتي",
+  "demoBadge": "بيانات تجريبية",
+  "demoTryAs": "جرّب النسخة التجريبية بصفة",
+  "demoHint": "بيانات وهمية. لا حاجة لحساب.",
+  "ticketFilterActive": "النشطة",
+  "ticketFilterMine": "المسندة لي",
+  "ticketFilterUnassigned": "غير مسندة",
+  "ticketFilterResolved": "المنتهية",
+  "ticketFilterAll": "الكل",
+  "statusOpen": "مفتوحة",
+  "priorityLow": "منخفضة",
+  "priorityMedium": "متوسطة",
+  "priorityHigh": "عالية",
+  "ticketsEmpty": "لا يوجد شيء هنا",
+  "ticketsEmptyHint": "تظهر البلاغات الجديدة فور إرسالها.",
+  "ticketUpdated": "تم التحديث",
+  "ticketDetails": "التذكرة",
+  "reportedBy": "أبلغ عنها {name}",
+  "@reportedBy": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "assignedToName": "مسندة إلى {name}",
+  "@assignedToName": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "notAssignedYet": "لم تُسند بعد",
+  "assignTo": "إسناد إلى",
+  "startWork": "ابدأ العمل",
+  "resolveTicket": "تم الحل",
+  "logWork": "سجّل العمل",
+  "workNote": "ماذا فعلت؟",
+  "minutesSpent": "الدقائق المستغرقة",
+  "partsUsed": "القطع المستخدمة (اختياري)",
+  "workLogged": "تم تسجيل العمل",
+  "workLogTitle": "سجل العمل",
+  "noWorkYet": "لم يُسجَّل أي عمل بعد.",
+  "minutesShort": "{count} د",
+  "@minutesShort": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "photosTitle": "الصور",
+  "reportTitle": "الإبلاغ عن مشكلة",
+  "whatsWrong": "ما المشكلة؟",
+  "describeProblem": "صف المشكلة",
+  "priorityLabel": "الأولوية",
+  "addPhotos": "الصور (حتى 3)",
+  "takePhoto": "الكاميرا",
+  "fromGallery": "المعرض",
+  "sendReport": "إرسال البلاغ",
+  "reportSent": "تم إرسال البلاغ وإخطار فريق الدعم.",
+  "quickWontTurnOn": "لا يعمل",
+  "quickSlow": "بطيء جدًا",
+  "quickScreen": "مشكلة بالشاشة",
+  "quickNetwork": "لا يوجد اتصال",
+  "quickPrinting": "مشكلة طباعة",
+  "titleRequired": "اكتب المشكلة في كلمات قليلة",
+  "scanTitle": "امسح الملصق",
+  "scanHint": "وجّه الكاميرا إلى ملصق QR على الجهاز.",
+  "enterCode": "أدخل الرمز يدويًا",
+  "enterCodeHint": "مثال: LAP-0007",
+  "openAction": "فتح",
+  "scanNotOurs": "هذا ليس ملصق ScanDesk.",
+  "assetNotFoundCode": "لا يوجد جهاز بهذا الرمز.",
+  "simulateScan": "تجريبي: محاكاة مسح",
+  "flashlight": "الفلاش",
+  "cameraOff": "الكاميرا متوقفة. اسمح بها من الإعدادات أو أدخل الرمز يدويًا.",
+  "scanToReport": "امسح ملصق الجهاز للإبلاغ عن مشكلة",
+  "assetsTitle": "الأصول",
+  "searchAssets": "ابحث بالرمز أو الاسم أو الرقم التسلسلي أو الشخص",
+  "filterAll": "الكل",
+  "assetStatusActive": "نشط",
+  "assetStatusInRepair": "قيد الصيانة",
+  "assetStatusStorage": "في المخزن",
+  "assetStatusRetired": "خارج الخدمة",
+  "catLaptop": "لابتوب",
+  "catDesktop": "كمبيوتر مكتبي",
+  "catMonitor": "شاشة",
+  "catPrinter": "طابعة",
+  "catPhone": "هاتف",
+  "catNetwork": "شبكات",
+  "catOther": "أخرى",
+  "assetCount": "{count} أصل",
+  "@assetCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "addAsset": "إضافة أصل",
+  "editAsset": "تعديل الأصل",
+  "fieldName": "الاسم",
+  "fieldBrand": "العلامة التجارية",
+  "fieldModel": "الطراز",
+  "fieldSerial": "الرقم التسلسلي",
+  "fieldCategory": "الفئة",
+  "fieldStatus": "الحالة",
+  "fieldSite": "الموقع",
+  "fieldLocation": "المكان",
+  "fieldAssignedTo": "المستخدم",
+  "fieldPurchase": "تاريخ الشراء",
+  "fieldWarranty": "الضمان حتى",
+  "fieldNotes": "ملاحظات",
+  "assetCodeLabel": "رمز الأصل",
+  "codeOnSave": "يُنشأ عند الحفظ",
+  "saveAction": "حفظ",
+  "savedMessage": "تم الحفظ",
+  "requiredField": "مطلوب",
+  "serviceRecord": "سجل الصيانة",
+  "lastServicedOn": "آخر صيانة {date}",
+  "@lastServicedOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "neverServiced": "لم تتم صيانته",
+  "warrantyUntilDate": "الضمان حتى {date}",
+  "@warrantyUntilDate": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "warrantyExpired": "انتهى الضمان",
+  "openTicketsTitle": "التذاكر المفتوحة",
+  "repairHistory": "سجل الإصلاح",
+  "showQr": "عرض QR",
+  "noAssets": "لا توجد أجهزة مطابقة",
+  "noAssetsHint": "جرّب بحثًا آخر أو أزل التصفية.",
+  "clearFilters": "إزالة التصفية",
+  "noHistory": "لا يوجد سجل بعد.",
+  "assetGone": "هذا الأصل لم يعد موجودًا.",
+  "sitesTitle": "المواقع والأماكن",
+  "addSite": "إضافة موقع",
+  "addLocation": "إضافة مكان",
+  "siteName": "اسم الموقع",
+  "cityLabel": "المدينة",
+  "locationName": "اسم المكان",
+  "locationsCount": "{count} أماكن",
+  "@locationsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "deleteAction": "حذف",
+  "cancelAction": "إلغاء",
+  "deleteSiteConfirm": "حذف هذا الموقع وأماكنه؟",
+  "noSites": "لا توجد مواقع بعد",
+  "qrTitle": "ملصق الجهاز",
+  "shareLabel": "مشاركة الملصق",
+  "printLabels": "طباعة الملصقات",
+  "labelSheetTitle": "ورقة الملصقات",
+  "selectedCount": "تم اختيار {count}",
+  "@selectedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "selectAll": "تحديد الكل",
+  "printSheet": "طباعة ورقة A4",
+  "stickHint": "الصق هذا على الجهاز",
+  "overviewTitle": "نظرة عامة",
+  "openNow": "مفتوحة الآن",
+  "overdueLabel": "متأخرة",
+  "avgResolve": "متوسط وقت الحل",
+  "hoursShort": "{count} س",
+  "@hoursShort": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "flowTitle": "أين التذاكر الآن",
+  "reportsWeek": "البلاغات خلال 7 أيام",
+  "mostRepaired": "الأجهزة الأكثر إصلاحًا",
+  "ticketsCount": "{count} تذاكر",
+  "@ticketsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "devicesInRepair": "قيد الصيانة",
+  "totalDevices": "الأجهزة",
+  "noData": "لا توجد بيانات بعد",
+  "profileTitle": "الحساب",
+  "languageLabel": "اللغة",
+  "appearanceLabel": "المظهر",
+  "themeSystem": "النظام",
+  "themeLight": "فاتح",
+  "themeDark": "داكن",
+  "adminTools": "أدوات الإدارة",
+  "offlineBanner": "لا يوجد اتصال. تُعرض البيانات المحفوظة.",
+  "pendingSync": "{count} بانتظار المزامنة",
+  "@pendingSync": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "backOnline": "عاد الاتصال",
+  "justNow": "الآن",
+  "minutesAgo": "منذ {count} د",
+  "@minutesAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "hoursAgo": "منذ {count} س",
+  "@hoursAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "daysAgo": "منذ {count} يوم",
+  "@daysAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "helloName": "مرحبًا، {name}",
+  "@helloName": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "startReport": "امسح للإبلاغ"
 }

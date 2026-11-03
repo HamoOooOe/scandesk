@@ -1,19 +1,12 @@
 import 'package:flutter/material.dart';
 
-import 'package:scandesk/core/l10n/generated/app_localizations.dart';
-import '../widgets/role_home_scaffold.dart';
+import '../../../auth/domain/user_role.dart';
+import '../widgets/role_shell.dart';
 
-/// Technicians work on the tickets assigned to them (later sprints).
+/// Technicians work their queue and scan devices.
 class TechnicianHomePage extends StatelessWidget {
   const TechnicianHomePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    return RoleHomeScaffold(
-      title: l10n.roleTechnician,
-      icon: Icons.build_outlined,
-      description: l10n.technicianHomeHint,
-    );
-  }
+  Widget build(BuildContext context) => const RoleShell(role: UserRole.technician);
 }
