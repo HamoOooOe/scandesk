@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mocktail/mocktail.dart';
 
+import 'package:scandesk/core/di/injection.dart';
 import 'package:scandesk/core/l10n/generated/app_localizations.dart';
 import 'package:scandesk/core/router/app_router.dart';
 import 'package:scandesk/core/router/routes.dart';
@@ -41,6 +42,9 @@ Future<GoRouter> pumpApp(WidgetTester tester, AuthState state) async {
       ),
     ),
   );
+  // The home screens load demo data (short fake network delays), so let
+  // those timers fire before the test ends.
+  await tester.pump(const Duration(seconds: 2));
   await tester.pumpAndSettle();
   return router;
 }
@@ -49,6 +53,12 @@ String locationOf(GoRouter router) =>
     router.routerDelegate.currentConfiguration.uri.path;
 
 void main() {
+  setUp(() async {
+    // Role homes ask get_it for their cubits; use the demo repositories.
+    await sl.reset();
+    configureDependencies(demo: true);
+  });
+
   testWidgets('logged-out user is sent to login', (tester) async {
     final router = await pumpApp(tester, const Unauthenticated());
     expect(locationOf(router), Routes.login);

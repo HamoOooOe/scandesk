@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:scandesk/core/l10n/generated/app_localizations.dart';
+import 'package:scandesk/core/widgets/punch_ring.dart';
 
 /// Shown while the AuthCubit checks for a saved session.
 /// The router moves away from here automatically.
@@ -16,17 +17,19 @@ class SplashPage extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
-              Icons.qr_code_scanner_rounded,
-              size: 72,
-              color: theme.colorScheme.primary,
+            PunchRing(
+              punchedMonths: const {1, 2, 4, 5, 7, 9, 10, 11},
+              size: 120,
+              currentMonth: DateTime.now().month,
+              hole: theme.colorScheme.surface,
             ),
-            const SizedBox(height: 16),
-            Text(l10n.appTitle, style: theme.textTheme.headlineMedium),
+            const SizedBox(height: 20),
+            Text(l10n.appTitle, style: theme.textTheme.displaySmall),
             const SizedBox(height: 4),
-            Text(l10n.tagline, style: theme.textTheme.bodyMedium),
-            const SizedBox(height: 32),
-            const CircularProgressIndicator(),
+            Text(
+              l10n.tagline,
+              style: theme.textTheme.titleMedium?.copyWith(color: theme.colorScheme.onSurfaceVariant),
+            ),
           ],
         ),
       ),
