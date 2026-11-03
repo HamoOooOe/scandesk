@@ -1,0 +1,29 @@
+name: CI
+
+# Runs on every pull request and on pushes to dev and main.
+# The pull request cannot be merged while this is red.
+on:
+  pull_request:
+  push:
+    branches: [dev, main]
+
+jobs:
+  analyze-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      # The app reads .env at startup; CI uses the example file with
+      # placeholder values, so no real key is ever stored in GitHub.
+      - name: Create .env from the example
+        run: cp .env.example .env
+
+      - run: flutter pub get
+      - run: flutter gen-l10n
+      - run: flutter analyze
+      - run: flutter test
