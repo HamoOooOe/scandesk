@@ -131,7 +131,6 @@ class _Content extends StatelessWidget {
                 size: 148,
                 year: now.year,
                 currentMonth: now.month,
-                showMonthNumbers: true,
               ),
               const SizedBox(width: 18),
               Expanded(
